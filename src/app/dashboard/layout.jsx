@@ -1,12 +1,12 @@
 "use client";
 
 import { Inter } from 'next/font/google';
-import './globals.css';
-import './print.css';
+import '../globals.css';
+import '../print.css';
 import { cn } from '@/lib/utils';
 import { Sidebar } from '@/components/Sidebar';
-import { Toaster } from '@/components/Toaster';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import Toaster from '@/components/Toaster';
+import ThemeProvider from '@/components/ThemeProvider';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Printer } from 'lucide-react';

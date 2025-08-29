@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "../components/ThemeProvider";
 import { AuthProvider } from "../contexts/AuthContext";
-import { Toaster } from "../components/ui/toaster";
+import Toaster from "../components/Toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +13,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -29,7 +27,7 @@ export default function RootLayout({ children }) {
         <title>AN Fitness Admin</title>
         <meta name="description" content="Admin dashboard for AN Fitness" />
       </head>
-      <body className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
           <ThemeProvider
             attribute="class"
