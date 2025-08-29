@@ -10,7 +10,7 @@ function Card({
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-border/50 py-6 shadow-professional backdrop-blur-sm",
+        "bg-card/90 text-card-foreground flex flex-col gap-8 rounded-2xl border border-border/30 py-8 shadow-professional-lg backdrop-blur-sm relative overflow-hidden",
         className
       )}
       {...props} />
@@ -25,7 +25,7 @@ function CardHeader({
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-3 px-8 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-8",
         className
       )}
       {...props} />
@@ -39,7 +39,7 @@ function CardTitle({
   return (
     <div
       data-slot="card-title"
-      className={cn("leading-tight font-bold tracking-tight", className)}
+      className={cn("leading-tight font-bold tracking-tight text-xl", className)}
       {...props} />
   );
 }
@@ -51,7 +51,7 @@ function CardDescription({
   return (
     <div
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm leading-relaxed", className)}
+      className={cn("text-muted-foreground text-sm leading-relaxed font-medium", className)}
       {...props} />
   );
 }
@@ -75,7 +75,7 @@ function CardContent({
   className,
   ...props
 }) {
-  return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />);
+  return (<div data-slot="card-content" className={cn("px-8", className)} {...props} />);
 }
 
 function CardFooter({
@@ -85,7 +85,7 @@ function CardFooter({
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn("flex items-center px-8 [.border-t]:pt-8", className)}
       {...props} />
   );
 }
