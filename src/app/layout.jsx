@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./tailwind-test.css";
 import ThemeProvider from "../components/ThemeProvider";
 import { AuthProvider } from "../contexts/AuthContext";
 import Toaster from "../components/Toaster";
@@ -28,6 +29,9 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Admin dashboard for AN Fitness" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+  {/* Tailwind test elements */}
+  <div className="bg-red-500 text-white p-4 text-center">Tailwind Test: If you see a red box, Tailwind is working!</div>
+  <div className="test-box">PostCSS @apply test: should be green if processed</div>
         <AuthProvider>
           <ThemeProvider
             attribute="class"

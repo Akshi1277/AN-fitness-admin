@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus } from "lucide-react";
-import { cn } from "@/lib/utils";
+import cn from "@/lib/utils";;
 
 export function KpiCard({ 
   title, 
