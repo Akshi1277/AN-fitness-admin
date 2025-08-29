@@ -1,0 +1,81 @@
+{
+  "kpis": {
+    "totalRevenue": 12453.89,
+    "refunds": 245.50,
+    "pending": 1298.76,
+    "completed": 10910.63
+  },
+  "methods": [
+    { "method": "Credit Card", "count": 689, "amount": 8567.45 },
+    { "method": "UPI", "count": 423, "amount": 2876.34 },
+    { "method": "Wallet", "count": 98, "amount": 1009.10 },
+    { "method": "Net Banking", "count": 56, "amount": 1200.00 }
+  ],
+  "recentTransactions": [
+    {
+      "id": "TXN-5001",
+      "customer": "John D.",
+      "method": "Credit Card",
+      "amount": 59.99,
+      "status": "completed",
+      "date": "2025-08-28T14:30:00Z",
+      "items": ["Whey Protein 2lbs"]
+    },
+    {
+      "id": "TXN-5002",
+      "customer": "Sarah M.",
+      "method": "UPI",
+      "amount": 34.99,
+      "status": "completed",
+      "date": "2025-08-28T12:15:00Z",
+      "items": ["Yoga Mat"]
+    },
+    {
+      "id": "TXN-5003",
+      "customer": "Mike R.",
+      "method": "Wallet",
+      "amount": 29.99,
+      "status": "processing",
+      "date": "2025-08-28T10:45:00Z",
+      "items": ["Pre-Workout 30sv"]
+    },
+    {
+      "id": "TXN-5004",
+      "customer": "Alex K.",
+      "method": "Credit Card",
+      "amount": 129.99,
+      "status": "pending",
+      "date": "2025-08-28T09:20:00Z",
+      "items": ["Dumbbell Set"]
+    },
+    {
+      "id": "TXN-5005",
+      "customer": "Emma W.",
+      "method": "Net Banking",
+      "amount": 189.97,
+      "status": "refunded",
+      "date": "2025-08-27T16:45:00Z",
+      "items": ["Resistance Bands Set", "Protein Shaker"]
+    }
+  ],
+  "refunds": [
+    {
+      "id": "REF-1001",
+      "transactionId": "TXN-5005",
+      "customer": "Emma W.",
+      "amount": 189.97,
+      "reason": "Product not as described",
+      "status": "processed",
+      "date": "2025-08-28T10:15:00Z"
+    },
+    {
+      "id": "REF-1002",
+      "transactionId": "TXN-4123",
+      "customer": "David L.",
+      "amount": 55.53,
+      "reason": "Damaged product",
+      "status": "pending",
+      "date": "2025-08-27T14:30:00Z"
+    }
+  ]
+}

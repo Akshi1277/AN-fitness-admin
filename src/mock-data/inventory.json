@@ -1,0 +1,85 @@
+{
+  "lowStockThreshold": 20,
+  "items": [
+    {
+      "id": 1,
+      "name": "Whey Protein 5lbs",
+      "sku": "WP-5000",
+      "category": "Protein",
+      "stock": 45,
+      "reorderLevel": 15,
+      "price": 59.99,
+      "status": "in-stock"
+    },
+    {
+      "id": 2,
+      "name": "Multivitamin 120ct",
+      "sku": "MV-120",
+      "category": "Vitamins",
+      "stock": 12,
+      "reorderLevel": 20,
+      "price": 24.99,
+      "status": "low-stock"
+    },
+    {
+      "id": 3,
+      "name": "Resistance Bands Set",
+      "sku": "RB-SET1",
+      "category": "Equipment",
+      "stock": 28,
+      "reorderLevel": 10,
+      "price": 29.99,
+      "status": "in-stock"
+    },
+    {
+      "id": 4,
+      "name": "Yoga Mat",
+      "sku": "YM-001",
+      "category": "Equipment",
+      "stock": 8,
+      "reorderLevel": 5,
+      "price": 34.99,
+      "status": "low-stock"
+    },
+    {
+      "id": 5,
+      "name": "Pre-Workout 30sv",
+      "sku": "PW-30",
+      "category": "Supplements",
+      "stock": 22,
+      "reorderLevel": 15,
+      "price": 29.99,
+      "status": "in-stock"
+    },
+    {
+      "id": 6,
+      "name": "Dumbbell Set",
+      "sku": "DB-SET5",
+      "category": "Equipment",
+      "stock": 3,
+      "reorderLevel": 5,
+      "price": 129.99,
+      "status": "low-stock"
+    },
+    {
+      "id": 7,
+      "name": "Fitness Tracker",
+      "sku": "FT-100",
+      "category": "Accessories",
+      "stock": 0,
+      "reorderLevel": 10,
+      "price": 89.99,
+      "status": "out-of-stock"
+    },
+    {
+      "id": 8,
+      "name": "Protein Shaker",
+      "sku": "PS-001",
+      "category": "Accessories",
+      "stock": 42,
+      "reorderLevel": 20,
+      "price": 12.99,
+      "status": "in-stock"
+    }
+  ]
+}
