@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>AN Fitness Admin</title>
         <meta name="description" content="Admin dashboard for AN Fitness" />
+  {/* Using local Tailwind/PostCSS pipeline (CDN removed) */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
   {/* Tailwind test elements */}
