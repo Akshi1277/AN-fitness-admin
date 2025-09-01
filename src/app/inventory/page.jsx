@@ -5,6 +5,7 @@ import { DataTable } from '@/components/DataTable';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Sidebar } from '@/components/Sidebar';
 import cn from '@/lib/utils';
 import { 
   Plus, 
@@ -202,113 +203,124 @@ export default function InventoryPage() {
   const outOfStockCount = inventoryData.items.filter(item => item.status === 'out-of-stock').length;
   const totalValue = inventoryData.items.reduce((sum, item) => sum + (item.price * item.stock), 0);
 
-  return (
-    <div className="space-professional animate-slide-up">
-      {/* Enhanced Header */}
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12">
-        <div className="space-y-3 animate-slide-in-left">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 shadow-professional">
-              <Boxes className="h-8 w-8 text-emerald-600" />
-            </div>
-            <div>
-              <h2 className="text-4xl font-bold tracking-tight text-gradient">
-                Inventory Management
-              </h2>
-              <p className="text-muted-foreground text-xl font-medium leading-relaxed">
-                Monitor and manage your product inventory with precision
-              </p>
-            </div>
-          </div>
-        </div>
+return (
+  <div className="flex h-screen bg-background">
+    {/* Sidebar */}
+    <Sidebar />
+    
+    {/* Main Content */}
+    <div className="flex-1 overflow-auto">
+      <div className="space-professional animate-slide-up p-8">
         
-        <div className="flex items-center space-x-4 animate-slide-in-right">
-          <Button variant="outline" className="btn-professional h-12 px-6 rounded-xl">
-            <Download className="mr-2 h-5 w-5" />
-            Export Inventory
-          </Button>
-          <Button className="btn-professional h-12 px-6 rounded-xl shadow-professional-lg bg-gradient-to-r from-primary to-primary/90">
-            <Plus className="mr-2 h-5 w-5" />
-            Add New Product
-          </Button>
-        </div>
-      </div>
-
-      {/* Enhanced KPI Cards */}
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-12">
-        <KpiCard
-          title="Total Products"
-          value={inventoryData.items.length.toString()}
-          icon={Package}
-          change="Active inventory items"
-          changeType="none"
-          color="from-blue-500/10 to-blue-600/5"
-        />
-        <KpiCard
-          title="In Stock"
-          value={inStockCount.toString()}
-          icon={CheckCircle}
-          change={`${Math.round((inStockCount / inventoryData.items.length) * 100)}% of total inventory`}
-          changeType="increase"
-          color="from-green-500/10 to-green-600/5"
-        />
-        <KpiCard
-          title="Low Stock Alert"
-          value={lowStockCount.toString()}
-          icon={AlertTriangle}
-          change="Requires immediate attention"
-          changeType={lowStockCount > 0 ? "decrease" : "none"}
-          color="from-yellow-500/10 to-yellow-600/5"
-        />
-        <KpiCard
-          title="Inventory Value"
-          value={`$${totalValue.toLocaleString()}`}
-          icon={BarChart3}
-          change="Total stock value"
-          changeType="increase"
-          color="from-purple-500/10 to-purple-600/5"
-        />
-      </div>
-
-      {/* Enhanced Inventory Table */}
-      <Card className="shadow-professional-xl card-professional">
-        <CardHeader className="pb-6">
-          <div className="flex items-center justify-between">
-            <div className="space-y-2">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 shadow-professional">
-                  <ShoppingCart className="h-5 w-5 text-emerald-600" />
-                </div>
-                <CardTitle className="text-2xl font-bold tracking-tight">Product Inventory</CardTitle>
+        {/* Enhanced Header */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12">
+          
+          <div className="space-y-3 animate-slide-in-left">
+            <div className="flex items-center space-x-4">
+              <div className="p-3 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 shadow-professional">
+                <Boxes className="h-8 w-8 text-emerald-600" />
               </div>
-              <p className="text-sm text-muted-foreground font-medium">
-                Complete overview of all products with real-time stock levels and status
-              </p>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Badge variant="outline" className="font-bold px-4 py-2 rounded-xl">
-                <Package className="h-4 w-4 mr-2" />
-                {filteredItems.length} products
-              </Badge>
-              {lowStockCount > 0 && (
-                <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 font-bold px-4 py-2 rounded-xl animate-bounce-subtle">
-                  <AlertTriangle className="h-4 w-4 mr-2" />
-                  {lowStockCount} low stock
-                </Badge>
-              )}
+              <div>
+                <h2 className="text-4xl font-bold tracking-tight text-gradient">
+                  Inventory Management
+                </h2>
+                <p className="text-muted-foreground text-xl font-medium leading-relaxed">
+                  Monitor and manage your product inventory with precision
+                </p>
+              </div>
             </div>
           </div>
-        </CardHeader>
-        <CardContent>
-          <DataTable 
-            columns={columns} 
-            data={filteredItems}
-            isLoading={isLoading}
-            emptyMessage="No products found in inventory"
-            searchPlaceholder="Search products, SKU, category, or status..."
+          
+          <div className="flex items-center space-x-4 animate-slide-in-right">
+            <Button variant="outline" className="btn-professional h-12 px-6 rounded-xl">
+              <Download className="mr-2 h-5 w-5" />
+              Export Inventory
+            </Button>
+            <Button className="btn-professional h-12 px-6 rounded-xl shadow-professional-lg bg-gradient-to-r from-primary to-primary/90">
+              <Plus className="mr-2 h-5 w-5" />
+              Add New Product
+            </Button>
+          </div>
+        </div>
+
+        {/* Enhanced KPI Cards */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-12">
+          <KpiCard
+            title="Total Products"
+            value={inventoryData.items.length.toString()}
+            icon={Package}
+            change="Active inventory items"
+            changeType="none"
+            color="from-blue-500/10 to-blue-600/5"
           />
-        </CardContent>
-      </Card>
+          <KpiCard
+            title="In Stock"
+            value={inStockCount.toString()}
+            icon={CheckCircle}
+            change={`${Math.round((inStockCount / inventoryData.items.length) * 100)}% of total inventory`}
+            changeType="increase"
+            color="from-green-500/10 to-green-600/5"
+          />
+          <KpiCard
+            title="Low Stock Alert"
+            value={lowStockCount.toString()}
+            icon={AlertTriangle}
+            change="Requires immediate attention"
+            changeType={lowStockCount > 0 ? "decrease" : "none"}
+            color="from-yellow-500/10 to-yellow-600/5"
+          />
+          <KpiCard
+            title="Inventory Value"
+            value={`$${totalValue.toLocaleString()}`}
+            icon={BarChart3}
+            change="Total stock value"
+            changeType="increase"
+            color="from-purple-500/10 to-purple-600/5"
+          />
+        </div>
+
+        {/* Enhanced Inventory Table */}
+        <Card className="shadow-professional-xl card-professional">
+          <CardHeader className="pb-6">
+            <div className="flex items-center justify-between">
+              <div className="space-y-2">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 rounded-xl bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 shadow-professional">
+                    <ShoppingCart className="h-5 w-5 text-emerald-600" />
+                  </div>
+                  <CardTitle className="text-2xl font-bold tracking-tight">Product Inventory</CardTitle>
+                </div>
+                <p className="text-sm text-muted-foreground font-medium">
+                  Complete overview of all products with real-time stock levels and status
+                </p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Badge variant="outline" className="font-bold px-4 py-2 rounded-xl">
+                  <Package className="h-4 w-4 mr-2" />
+                  {filteredItems.length} products
+                </Badge>
+                {lowStockCount > 0 && (
+                  <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400 font-bold px-4 py-2 rounded-xl animate-bounce-subtle">
+                    <AlertTriangle className="h-4 w-4 mr-2" />
+                    {lowStockCount} low stock
+                  </Badge>
+                )}
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <DataTable 
+              columns={columns} 
+              data={filteredItems}
+              isLoading={isLoading}
+              emptyMessage="No products found in inventory"
+              searchPlaceholder="Search products, SKU, category, or status..."
+            />
+          </CardContent>
+        </Card>
+      </div>
     </div>
-  );
+  </div>
+
+);
 }

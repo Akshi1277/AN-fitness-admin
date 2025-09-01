@@ -69,7 +69,7 @@ export function Sidebar() {
 
   return (
     <div className="hidden lg:flex lg:flex-shrink-0">
-      <div className="flex flex-col w-80 bg-card/95 backdrop-blur-xl border-r border-border/30 shadow-professional-xl relative overflow-hidden">
+      <div className="flex flex-col w-64 bg-card/95 backdrop-blur-xl border-r border-border/30 shadow-professional-xl relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 grid-pattern opacity-30" />
         
