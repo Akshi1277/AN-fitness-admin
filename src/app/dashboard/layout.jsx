@@ -7,7 +7,6 @@ import cn from '@/lib/utils';
 import { Sidebar } from '@/components/Sidebar';
 import Toaster from '@/components/Toaster';
 import ThemeProvider from '@/components/ThemeProvider';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -21,7 +20,7 @@ import {
   HelpCircle,
   MessageSquare,
   Zap,
-  
+  Clock,
   Activity
 } from 'lucide-react';
 import {
@@ -48,8 +47,8 @@ export default function RootLayout({ children }) {
         <div className="flex min-h-screen bg-background bg-professional">
           <Sidebar className="no-print" />
           <div className="flex-1 flex flex-col min-w-0">
-            {/* Enhanced Header */}
-            <header className="h-24 border-b border-border/30 flex items-center px-8 nav-professional no-print sticky top-0 z-40 shadow-professional">
+            {/* Header without Dark Mode Toggle */}
+            <header className="h-24 border-b border-border bg-card text-card-foreground flex items-center px-8 no-print sticky top-0 z-40 shadow-professional backdrop-blur-sm">
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-6">
                   <Button variant="ghost" size="icon" className="lg:hidden hover-lift">
@@ -76,6 +75,12 @@ export default function RootLayout({ children }) {
                     </div>
                   </div>
 
+                  {/* Status Badge */}
+                  <Badge variant="outline" className="px-4 py-2 rounded-xl font-semibold text-slate-900">
+                    <Clock className="h-4 w-4 mr-2" />
+                    Last updated: {new Date().toLocaleTimeString()}
+                  </Badge>
+
                   {/* Enhanced Notifications */}
                   <div className="relative">
                     <Button variant="ghost" size="icon" className="relative hover-lift h-11 w-11 rounded-xl">
@@ -97,11 +102,6 @@ export default function RootLayout({ children }) {
                     Print Report
                   </Button>
 
-                  {/* Enhanced Theme Toggle */}
-                  <div className="p-1 rounded-xl bg-muted/30 border border-border/50">
-                    <ThemeToggle />
-                  </div>
-
                   {/* Enhanced User Menu */}
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -120,7 +120,7 @@ export default function RootLayout({ children }) {
                             AG
                           </div>
                           <div className="flex flex-col space-y-1">
-                            <p className="text-sm font-bold leading-none">Admin User</p>
+                            <p className="text-sm font-bold leading-none text-card-foreground">Admin User</p>
                             <p className="text-xs leading-none text-muted-foreground font-medium">
                               admin@anfitness.com
                             </p>

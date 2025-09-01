@@ -20,21 +20,21 @@ export default function TransactionsPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-      setFilteredTransactions(transactionsData.recentTransactions);
+      setFilteredTransactions(transactionsData?.recentTransactions || []);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    let result = [...transactionsData.recentTransactions];
+    let result = [...(transactionsData?.recentTransactions || [])];
     
     // Apply search
     if (searchTerm.trim()) {
       result = result.filter(transaction =>
-        transaction.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        transaction.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        transaction.items.some(item => 
-          item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        transaction?.id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        transaction?.customer?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        transaction?.items?.some(item => 
+          item?.name?.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
     }
@@ -45,14 +45,14 @@ export default function TransactionsPage() {
         let aValue, bValue;
         
         if (sortConfig.key === 'customer') {
-          aValue = a.customer.name;
-          bValue = b.customer.name;
+          aValue = a?.customer?.name || '';
+          bValue = b?.customer?.name || '';
         } else if (sortConfig.key === 'items') {
-          aValue = a.items.length;
-          bValue = b.items.length;
+          aValue = a?.items?.length || 0;
+          bValue = b?.items?.length || 0;
         } else {
-          aValue = a[sortConfig.key];
-          bValue = b[sortConfig.key];
+          aValue = a?.[sortConfig.key] || '';
+          bValue = b?.[sortConfig.key] || '';
         }
 
         if (aValue < bValue) {
@@ -81,7 +81,7 @@ export default function TransactionsPage() {
       key: 'id', 
       header: 'Order ID',
       render: (transaction) => (
-        <span className="font-medium">#{transaction.id}</span>
+        <span className="font-medium">#{transaction?.id || 'N/A'}</span>
       )
     },
     { 
@@ -89,7 +89,7 @@ export default function TransactionsPage() {
       header: 'Date',
       render: (transaction) => (
         <div className="flex items-center">
-          <span>{new Date(transaction.date).toLocaleDateString()}</span>
+          <span>{transaction?.date ? new Date(transaction.date).toLocaleDateString() : 'N/A'}</span>
           <button 
             onClick={() => requestSort('date')}
             className="ml-2 hover:text-primary"
@@ -102,23 +102,26 @@ export default function TransactionsPage() {
     { 
       key: 'customer', 
       header: 'Customer',
-      render: (transaction) => (
-        <div className="flex items-center">
-          <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-2">
-            <span className="text-xs font-medium text-gray-600">
-              {transaction.customer.name.charAt(0)}
-            </span>
+      render: (transaction) => {
+        const customerName = transaction?.customer?.name || 'Unknown Customer';
+        return (
+          <div className="flex items-center">
+            <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-2">
+              <span className="text-xs font-medium text-gray-600">
+                {customerName.charAt(0).toUpperCase()}
+              </span>
+            </div>
+            <span>{customerName}</span>
           </div>
-          <span>{transaction.customer.name}</span>
-        </div>
-      )
+        );
+      }
     },
     { 
       key: 'items', 
       header: 'Items',
       render: (transaction) => (
         <div className="flex items-center">
-          <span>{transaction.items.length} items</span>
+          <span>{transaction?.items?.length || 0} items</span>
         </div>
       )
     },
@@ -127,7 +130,7 @@ export default function TransactionsPage() {
       header: 'Total',
       render: (transaction) => (
         <div className="font-medium">
-          ${transaction.total.toFixed(2)}
+          ${(transaction?.total || 0).toFixed(2)}
         </div>
       )
     },
@@ -137,12 +140,12 @@ export default function TransactionsPage() {
       render: (transaction) => (
         <Badge 
           variant={
-            transaction.status === 'completed' ? 'default' : 
-            transaction.status === 'processing' ? 'secondary' : 'outline'
+            transaction?.status === 'completed' ? 'default' : 
+            transaction?.status === 'processing' ? 'secondary' : 'outline'
           }
           className="capitalize"
         >
-          {transaction.status}
+          {transaction?.status || 'unknown'}
         </Badge>
       )
     },
@@ -150,12 +153,11 @@ export default function TransactionsPage() {
       key: 'payment', 
       header: 'Payment',
       render: (transaction) => (
-        <div className="flex items-center
-          ">
+        <div className="flex items-center">
           <div className={`h-2 w-2 rounded-full mr-2 ${
-            transaction.paymentStatus === 'paid' ? 'bg-green-500' : 'bg-yellow-500'
+            transaction?.paymentStatus === 'paid' ? 'bg-green-500' : 'bg-yellow-500'
           }`} />
-          <span className="capitalize">{transaction.paymentStatus}</span>
+          <span className="capitalize">{transaction?.paymentStatus || 'pending'}</span>
         </div>
       )
     }
@@ -187,10 +189,10 @@ export default function TransactionsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${transactionsData.kpis.totalRevenue.toLocaleString()}
+              ${(transactionsData?.kpis?.totalRevenue || 0).toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
-              +{transactionsData.kpis.revenueChange}% from last month
+              +{transactionsData?.kpis?.revenueChange || 0}% from last month
             </p>
           </CardContent>
         </Card>
@@ -201,10 +203,10 @@ export default function TransactionsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {transactionsData.kpis.totalOrders.toLocaleString()}
+              {(transactionsData?.kpis?.totalOrders || 0).toLocaleString()}
             </div>
             <p className="text-xs text-muted-foreground">
-              +{transactionsData.kpis.orderChange}% from last month
+              +{transactionsData?.kpis?.orderChange || 0}% from last month
             </p>
           </CardContent>
         </Card>
@@ -215,10 +217,10 @@ export default function TransactionsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              ${transactionsData.kpis.avgOrderValue.toFixed(2)}
+              ${(transactionsData?.kpis?.avgOrderValue || 0).toFixed(2)}
             </div>
             <p className="text-xs text-muted-foreground">
-              +{transactionsData.kpis.aovChange}% from last month
+              +{transactionsData?.kpis?.aovChange || 0}% from last month
             </p>
           </CardContent>
         </Card>
@@ -229,11 +231,11 @@ export default function TransactionsPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {transactionsData.kpis.refundRate}%
+              {transactionsData?.kpis?.refundRate || 0}%
             </div>
             <p className="text-xs text-muted-foreground">
-              {transactionsData.kpis.refundChange > 0 ? '+' : ''}
-              {transactionsData.kpis.refundChange}% from last month
+              {(transactionsData?.kpis?.refundChange || 0) > 0 ? '+' : ''}
+              {transactionsData?.kpis?.refundChange || 0}% from last month
             </p>
           </CardContent>
         </Card>

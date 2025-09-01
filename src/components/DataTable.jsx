@@ -13,9 +13,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowUpDown, ChevronLeft, ChevronRight, Search, Filter, MoreHorizontal, Eye } from 'lucide-react';
 import { useDebounce } from '@/hooks/useDebounce';
-import { cn } from '@/lib/utils';
+import cn from "@/lib/utils";
 
-const ITEMS_PER_PAGE = 10;
+
 
 export function DataTable({ 
   columns, 
@@ -31,7 +31,7 @@ export function DataTable({
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const ITEMS_PER_PAGE = 10;
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   // Handle search

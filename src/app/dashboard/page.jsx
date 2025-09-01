@@ -127,7 +127,7 @@ export default function DashboardPage() {
             Here's what's happening at AN Fitness today
           </p>
           <div className="flex items-center space-x-4 mt-4">
-            <Badge className="px-4 py-2 bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-400 rounded-xl font-semibold">
+            <Badge className="px-4 py-2 bg-green-100 text-green-800 border-green-200 dark:bg-white dark:text-blue-500 rounded-xl font-semibold">
               <CheckCircle className="h-4 w-4 mr-2" />
               All Systems Operational
             </Badge>
@@ -178,14 +178,6 @@ export default function DashboardPage() {
           icon={DollarSign}
           color="from-purple-500/10 to-purple-600/5"
           trend={[1245, 1890, 2100, 1980, 2310, 1928, 2000]}
-        />
-        <KpiCard
-          title="Classes Today"
-          value="8"
-          change="Next class in 2 hours"
-          changeType="none"
-          icon={Calendar}
-          color="from-orange-500/10 to-orange-600/5"
         />
       </div>
 
