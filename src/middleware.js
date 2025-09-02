@@ -24,9 +24,9 @@ export function middleware(request) {
   // }
   
   // Redirect to dashboard if trying to access login/register while already authenticated
-  if (isPublicRoute && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+  // if (isPublicRoute && token) {
+  //   return NextResponse.redirect(new URL('/dashboard', request.url));
+  // }
   
   // For API routes, check authentication
   if (pathname.startsWith('/api') && !pathname.includes('/api/auth')) {

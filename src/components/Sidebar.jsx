@@ -30,7 +30,7 @@ const navItems = [
     href: '/inventory',
     icon: Package,
     description: 'Product Management',
-    badge: '8',
+    
     badgeVariant: 'destructive',
     color: 'from-emerald-500 to-emerald-600'
   },
