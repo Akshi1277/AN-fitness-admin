@@ -17,11 +17,11 @@ export function middleware(request) {
   const token = request.cookies.get('authToken')?.value;
   
   // Redirect to login if trying to access protected route without auth
-  if (isProtectedRoute) {
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('from', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
+  // if (isProtectedRoute) {
+  //   const loginUrl = new URL('/login', request.url);
+  //   loginUrl.searchParams.set('from', pathname);
+  //   return NextResponse.redirect(loginUrl);
+  // }
   
   // Redirect to dashboard if trying to access login/register while already authenticated
   if (isPublicRoute && token) {
