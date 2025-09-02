@@ -17,7 +17,7 @@ export function middleware(request) {
   const token = request.cookies.get('authToken')?.value;
   
   // Redirect to login if trying to access protected route without auth
-  if (isProtectedRoute && !token) {
+  if (isProtectedRoute) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('from', pathname);
     return NextResponse.redirect(loginUrl);
