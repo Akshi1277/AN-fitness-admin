@@ -524,7 +524,7 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-muted/20 to-transparent border border-border/30">
+              {/* <div className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-muted/20 to-transparent border border-border/30">
                 <div className="space-y-1">
                   <p className="font-bold text-base">Dark Mode</p>
                   <p className="text-sm text-muted-foreground font-medium">
@@ -532,14 +532,12 @@ export default function SettingsPage() {
                   </p>
                 </div>
                 <Button
-                  variant={theme === 'dark' ? "default" : "outline"}
                   size="sm"
                   onClick={toggleTheme}
                   className="rounded-xl"
                 >
-                  {theme === 'dark' ? 'Dark' : 'Light'}
                 </Button>
-              </div>
+              </div> */}
               
               <div className="p-4 rounded-2xl bg-gradient-to-r from-muted/20 to-transparent border border-border/30">
                 <div className="space-y-3">

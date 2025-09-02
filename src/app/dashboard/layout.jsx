@@ -1,6 +1,8 @@
 "use client";
 
 import { Inter } from 'next/font/google';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import '../globals.css';
 import '../print.css';
 import cn from '@/lib/utils';
@@ -34,19 +36,52 @@ import { Input } from '@/components/ui/input';
 
 const inter = Inter({ subsets: ['latin'] });
 
+// Page configuration matching your sidebar navigation
+const pageConfig = {
+  '/dashboard': {
+    title: 'Dashboard',
+    subtitle: 'Welcome back, Admin'
+  },
+  '/inventory': {
+    title: 'Inventory',
+    subtitle: 'Manage your products and stock'
+  },
+  '/customers': {
+    title: 'Customers',
+    subtitle: 'Customer database and management'
+  },
+  '/transactions': {
+    title: 'Transactions',
+    subtitle: 'Payment history and records'
+  },
+  '/analytics': {
+    title: 'Analytics',
+    subtitle: 'Reports and insights'
+  },
+  '/settings': {
+    title: 'Settings',
+    subtitle: 'System configuration'
+  }
+};
+
 // Print function
 const handlePrint = () => {
   window.print();
 };
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  
+  // Get current page config or fallback to dashboard
+  const currentPage = pageConfig[pathname] || pageConfig['/dashboard'];
+
   return (
     <div className={cn("layout-professional font-sans antialiased", inter.className)}>
       
         <div className="flex min-h-screen bg-background bg-professional">
           <Sidebar className="no-print" />
           <div className="flex-1 flex flex-col min-w-0">
-            {/* Header without Dark Mode Toggle */}
+            {/* Header with Dynamic Title */}
             <header className="h-24 border-b border-border bg-card text-card-foreground flex items-center px-8 no-print sticky top-0 z-40 shadow-professional backdrop-blur-sm">
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-6">
@@ -54,8 +89,12 @@ export default function RootLayout({ children }) {
                     <Menu className="h-5 w-5" />
                   </Button>
                   <div className="animate-slide-in-left">
-                    <h1 className="text-2xl font-bold tracking-tight text-gradient">Dashboard</h1>
-                    <p className="text-sm text-muted-foreground font-medium">Welcome back, Admin</p>
+                    <h1 className="text-2xl font-bold tracking-tight text-gradient">
+                      {currentPage.title}
+                    </h1>
+                    <p className="text-sm text-muted-foreground font-medium">
+                      {currentPage.subtitle}
+                    </p>
                   </div>
                 </div>
                 
@@ -170,10 +209,14 @@ export default function RootLayout({ children }) {
               
               <div className="print-only p-6 text-center print:p-0 bg-card rounded-2xl mx-8 mt-8 shadow-professional">
                 <div className="flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-8 h-8 bg-primary rounded-xl flex items-center justify-center">
-                    <Activity className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <h1 className="text-3xl font-bold text-gradient">AN Fitness</h1>
+                  <Image 
+                    src="/anfitness.jpg" 
+                    alt="AN Fitness Logo" 
+                    width={80} 
+                    height={80} 
+                    className="rounded-xl object-cover"
+                  />
+                  <h1 className="text-4xl font-bold text-gradient">AN Fitness</h1>
                 </div>
                 <p className="text-muted-foreground font-medium">
                   Professional Report • Generated on {new Date().toLocaleDateString('en-US', { 

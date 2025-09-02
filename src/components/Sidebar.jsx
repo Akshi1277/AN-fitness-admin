@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { 
   LayoutDashboard, 
   Package, 
@@ -13,7 +14,8 @@ import {
   Activity,
   Zap,
   Sparkles,
-  Badge
+  Badge,
+  ChevronDown
 } from 'lucide-react';
 import cn from '@/lib/utils';
 
@@ -30,7 +32,6 @@ const navItems = [
     href: '/inventory',
     icon: Package,
     description: 'Product Management',
-    
     badgeVariant: 'destructive',
     color: 'from-emerald-500 to-emerald-600'
   },
@@ -68,39 +69,55 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="hidden lg:flex lg:flex-shrink-0">
-      <div className="flex flex-col w-64 bg-card/95 backdrop-blur-xl border-r border-border/30 shadow-professional-xl relative overflow-hidden">
+    <>
+      {/* Fixed sidebar */}
+      <div className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-64 lg:overflow-y-auto lg:bg-card/95 lg:backdrop-blur-xl lg:border-r lg:border-border/30 lg:shadow-professional-xl scrollbar-hide">
         {/* Background Pattern */}
         <div className="absolute inset-0 grid-pattern opacity-30" />
+        
+
         
         {/* Header */}
         <div className="relative z-10 flex items-center h-24 px-8 border-b border-border/30 bg-gradient-to-r from-primary/8 via-primary/5 to-transparent">
           <div className="flex items-center space-x-4">
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-professional-lg animate-pulse-glow">
+              {/* <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-professional-lg animate-pulse-glow">
                 <Activity className="h-7 w-7 text-primary-foreground" />
               </div>
               <div className="absolute -top-1 -right-1">
                 <Sparkles className="h-4 w-4 text-yellow-500 animate-bounce-subtle" />
-              </div>
+              </div> */}
+               <Image 
+                    src="/anfitness.jpg" 
+                    alt="AN Fitness Logo" 
+                    width={70} 
+                    height={70} 
+                    className="rounded-xl object-cover"
+                  />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight text-gradient">AN Fitness</h1>
+              <h1 className="font-bold tracking-tight text-gradient">AN Fitness</h1>
               <p className="text-sm text-muted-foreground font-medium tracking-wide">
-                Admin Portal
+                Admin Panel
               </p>
             </div>
           </div>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-6 space-y-2 relative z-10">
+        <nav className="relative z-10 p-6 space-y-2">
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest px-1">
                 Navigation
               </p>
-              <div className="h-px flex-1 bg-gradient-to-r from-border/50 to-transparent ml-4" />
+              <div className="flex items-center space-x-2">
+                <div className="h-px flex-1 bg-gradient-to-r from-border/50 to-transparent" />
+                <div className="flex items-center space-x-1 text-xs text-muted-foreground bg-card/50 border border-border/30 rounded-full px-2 py-1">
+                  <ChevronDown className="h-3 w-3 text-primary animate-bounce" />
+                  <span className="font-medium text-[10px] tracking-tight">Scroll for more</span>
+                </div>
+              </div>
             </div>
             
             <div className="space-y-2">
@@ -113,15 +130,15 @@ export function Sidebar() {
                     className={cn(
                       'group relative flex items-center justify-between px-4 py-4 text-sm font-medium rounded-2xl transition-all duration-300 ease-out overflow-hidden',
                       isActive
-                        ? 'bg-primary text-primary-foreground shadow-professional-lg scale-[1.02]'
+                        ? 'glass text-foreground shadow-professional-lg scale-[1.02] border-primary/20'
                         : 'text-muted-foreground hover:bg-accent/50 hover:text-accent-foreground hover:shadow-professional hover:scale-[1.01]',
                       'animate-slide-in-left'
                     )}
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    {/* Background gradient for active state */}
+                    {/* Background gradient for active state - now glassmorphism */}
                     {isActive && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80 opacity-100" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/8 to-primary/6 backdrop-blur-sm border border-primary/20 rounded-2xl" />
                     )}
                     
                     {/* Hover background */}
@@ -135,7 +152,7 @@ export function Sidebar() {
                       <div className={cn(
                         'p-3 rounded-xl transition-all duration-300 relative overflow-hidden',
                         isActive 
-                          ? 'bg-primary-foreground/15 shadow-inner-professional' 
+                          ? 'bg-primary/15 shadow-inner-professional border border-primary/20 backdrop-blur-sm' 
                           : 'bg-muted/50 group-hover:bg-accent-foreground/10 group-hover:shadow-professional'
                       )}>
                         {/* Icon background gradient */}
@@ -152,7 +169,7 @@ export function Sidebar() {
                         <span className={cn(
                           'text-xs transition-colors duration-300 font-medium',
                           isActive 
-                            ? 'text-primary-foreground/80' 
+                            ? 'text-primary/90' 
                             : 'text-muted-foreground group-hover:text-accent-foreground/80'
                         )}>
                           {item.description}
@@ -166,7 +183,7 @@ export function Sidebar() {
                           variant={item.badgeVariant || (isActive ? "secondary" : "outline")} 
                           className={cn(
                             "text-xs px-2.5 py-1 font-bold shadow-sm",
-                            isActive && "bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30"
+                            isActive && "bg-primary/20 text-primary border-primary/30 backdrop-blur-sm"
                           )}
                         >
                           {item.badge}
@@ -175,14 +192,14 @@ export function Sidebar() {
                       <ChevronRight className={cn(
                         'h-5 w-5 transition-all duration-300',
                         isActive 
-                          ? 'rotate-90 text-primary-foreground/80' 
+                          ? 'rotate-90 text-primary/80' 
                           : 'group-hover:translate-x-1 group-hover:text-accent-foreground'
                       )} />
                     </div>
                     
-                    {/* Active indicator */}
+                    {/* Active indicator - glassmorphism style */}
                     {isActive && (
-                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 bg-primary-foreground rounded-r-full shadow-lg" />
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-8 bg-primary/80 rounded-r-full shadow-lg backdrop-blur-sm" />
                     )}
                   </Link>
                 );
@@ -193,17 +210,17 @@ export function Sidebar() {
           {/* Quick Stats */}
           <div className="mt-8 p-4 rounded-2xl bg-gradient-to-br from-muted/30 to-muted/10 border border-border/30 backdrop-blur-sm">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-bold text-foreground">Quick Stats</h3>
+              <h3 className="text-sm font-bold text-foreground">Store Stats</h3>
               <Zap className="h-4 w-4 text-primary" />
             </div>
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-xs text-muted-foreground font-medium">Active Members</span>
-                <span className="text-sm font-bold text-green-600">856</span>
+                <span className="text-xs text-muted-foreground font-medium">Active Orders</span>
+                <span className="text-sm font-bold text-green-600">42</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-muted-foreground font-medium">Today's Revenue</span>
-                <span className="text-sm font-bold text-blue-600">$2,340</span>
+                <span className="text-xs text-muted-foreground font-medium">Today's Sales</span>
+                <span className="text-sm font-bold text-blue-600">$3,420</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-xs text-muted-foreground font-medium">Low Stock Items</span>
@@ -211,6 +228,8 @@ export function Sidebar() {
               </div>
             </div>
           </div>
+
+          {/* Remove the old scroll indicator since we have a fixed one now */}
         </nav>
 
         {/* Enhanced Footer */}
@@ -233,6 +252,11 @@ export function Sidebar() {
           </div>
         </div>
       </div>
-    </div>
+      
+      {/* Spacer for main content - this prevents content from being hidden behind the fixed sidebar */}
+      <div className="hidden lg:block lg:w-64 lg:flex-shrink-0" aria-hidden="true">
+        {/* This empty div creates space so main content doesn't overlap with fixed sidebar */}
+      </div>
+    </>
   );
 }
