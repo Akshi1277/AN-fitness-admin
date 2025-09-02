@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 // List of public routes that don't require authentication
-const publicRoutes = ['/login', '/register', '/forgot-password', '/reset-password'];
+const publicRoutes = ['/login', '/register', '/forgot-password', '/reset-password', '/'];
 
 // List of protected routes that require authentication
 const protectedRoutes = ['/dashboard', '/inventory', '/customers', '/transactions', '/settings'];
