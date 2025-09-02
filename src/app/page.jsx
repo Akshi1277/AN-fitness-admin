@@ -20,7 +20,7 @@ export default function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Redirect to the intended URL or dashboard
-    router.push(from);
+    router.push("/dashboard");
   };
 
   return (
