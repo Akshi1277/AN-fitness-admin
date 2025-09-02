@@ -6,7 +6,6 @@ import '../print.css';
 import cn from '@/lib/utils';
 import { Sidebar } from '@/components/Sidebar';
 import Toaster from '@/components/Toaster';
-import ThemeProvider from '@/components/ThemeProvider';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { 
@@ -43,7 +42,7 @@ const handlePrint = () => {
 export default function RootLayout({ children }) {
   return (
     <div className={cn("layout-professional font-sans antialiased", inter.className)}>
-      <ThemeProvider>
+      
         <div className="flex min-h-screen bg-background bg-professional">
           <Sidebar className="no-print" />
           <div className="flex-1 flex flex-col min-w-0">
@@ -193,7 +192,6 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         <Toaster />
-      </ThemeProvider>
     </div>
   );
 }

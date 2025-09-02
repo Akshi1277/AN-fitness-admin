@@ -1,6 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ThemeProvider from "../components/ThemeProvider";
 import { AuthProvider } from "../contexts/AuthContext";
 import Toaster from "../components/Toaster";
 
@@ -32,15 +31,9 @@ export default function RootLayout({ children }) {
   {/* Tailwind test elements */}
  
         <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+         
             {children}
             <Toaster />
-          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

@@ -28,7 +28,7 @@ import {
   Upload,
   Download
 } from 'lucide-react';
-import { useTheme } from '@/components/ThemeProvider';
+
 import cn from '@/lib/utils';
 
 export default function SettingsPage() {
@@ -67,7 +67,6 @@ export default function SettingsPage() {
     }
   });
 
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
